@@ -1,0 +1,12 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/Communalists/frontend
+[submodule "backend"]
+	path = backend
+	url = https://github.com/Communalists/backend
+[submodule "database"]
+	path = database
+	url = https://github.com/Communalists/database
+[submodule "shared"]
+	path = shared
+	url = https://github.com/Communalists/shared
