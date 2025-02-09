@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "3003:5432"
+    env_file:
+      - .env
+
+  orm:
+    image: prismagraphql/prisma:1.34.9-gatsby
+    restart: always
+    ports:
+      - "3002:4466"
+    env_file:
+      - .env
+    environment:
+      PRISMA_CONFIG: |
+        managementApiSecret: ${PRISMA_MANAGEMENT_API_SECRET}
+        port: 4466
+        databases:
+          default:
+            connector: postgres
+            migrations: false
+            host: db
+            port: 5432
+            user: ${POSTGRES_USER}
+            password: ${POSTGRES_PASSWORD}
+            database: ${POSTGRES_USER}
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: "${POSTGRES_DATABASE_URL}?schema=public"
+    depends_on:
+      - db
+      - orm
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      BACKEND_URL: "http://backend:3001"
+    depends_on:
+      - backend
+      - orm
+
+volumes:
+  postgres_data:
