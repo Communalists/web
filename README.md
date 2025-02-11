@@ -26,6 +26,8 @@ Now, go to "Run and Debug" on the left side-bar of your VSCode. It should open t
 Then, click on the "+" button to the right, on the same row as "Problems", "Output", Debug Console", etc. This should open a new terminal where you then need to run the following:
 
 ```sh
+npm install
+
 # initializes the database with prisma
 npm run init
 
