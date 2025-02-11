@@ -13,16 +13,6 @@
       }
     },
     {
-      "name": "Backend",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "docker compose up backend --build",
-      "postDebugTask": "Docker Stop",
-      "presentation": {
-        "hidden": true
-      }
-    },
-    {
       "name": "Full",
       "type": "node-terminal",
       "request": "launch",
@@ -32,12 +22,8 @@
   ],
   "compounds": [
     {
-      "name": "Backend Development",
-      "configurations": ["Backend"]
-    },
-    {
       "name": "Frontend Development",
-      "configurations": ["Frontend", "Backend"]
+      "configurations": ["Frontend"]
     }
   ]
 }
