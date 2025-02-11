@@ -27,28 +27,8 @@ services:
             user: ${POSTGRES_USER}
             password: ${POSTGRES_PASSWORD}
             database: ${POSTGRES_USER}
-
-  backend:
-    build:
-      context: ./backend
-    ports:
-      - "3001:3001"
-    env_file: ".env"
-    environment:
-      DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_USER}"
     depends_on:
       - db
-      - orm
-
-  frontend:
-    build:
-      context: ./frontend
-    ports:
-      - "3000:3000"
-    env_file: ".env"
-    depends_on:
-      - backend
-      - orm
 
 volumes:
   postgres_data:

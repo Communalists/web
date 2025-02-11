@@ -1,30 +1,35 @@
 {
-  "name": "web",
-  "version": "1.0.0",
-  "description": "First go through the below items and follow their installation guides:",
-  "homepage": "https://github.com/Communalists/web#readme",
-  "bugs": {
-    "url": "https://github.com/Communalists/web/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Communalists/web.git"
-  },
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "prisma-pull": "prisma db pull",
-    "generate": "prisma generate",
-    "init": "npx prisma migrate dev --name init",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "npm --prefix ./frontend/ install && npm --prefix ./backend/ install"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db-pull": "prisma db pull",
+    "init": "prisma migrate dev --name init",
+    "generate": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.3.1",
-    "dotenv-cli": "^8.0.0"
+    "next": "15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.6",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5",
     "prisma": "^6.3.1"
+  },
+  "prisma": {
+    "schema": "src/shared/prisma/schema.prisma"
   }
 }
